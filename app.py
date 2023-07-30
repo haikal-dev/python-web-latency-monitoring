@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def read_ping_data():
     with open("ping.txt", "r") as file:
-        lines = file.readlines()[-30:]  # Read the last 10 lines
+        lines = file.readlines()[-100:]  # Read the last 10 lines
 
         # Regular expression pattern to match the time value
         time_pattern = r'time=([\d.]+) ms'
