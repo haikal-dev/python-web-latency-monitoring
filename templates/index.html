@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latency Monitoring</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<style>
+
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+</style>
+</head>
+<body>
+    <h1>Latency Monitoring (8.8.8.8)</h1>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="pingChart"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('pingChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Latency',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom'
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function updateChart() {
+            fetch('/ping_data')
+                .then(response => response.json())
+                .then(data => {
+                    chart.data.labels = Array.from(Array(data.length).keys());
+                    chart.data.datasets[0].data = data;
+                    chart.update();
+                });
+        }
+
+        // Update the chart every 2 seconds
+        setInterval(updateChart, 2000);
+    </script>
+</body>
+</html>
+
