@@ -1,6 +1,6 @@
 import time
 import re
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, url_for, send_from_directory
 
 app = Flask(__name__)
 
@@ -33,6 +33,10 @@ def index():
 def ping_data():
     data = read_ping_data()
     return jsonify(data)
+
+@app.route('/js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory('static/js', filename)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

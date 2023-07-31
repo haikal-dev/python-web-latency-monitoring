@@ -4,10 +4,12 @@
 <head>
     <title>Latency Monitoring</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+
+    <script defer src="/js/app.f7d27a10119ed9c361e1.js"></script>
     <style>
 
       body {
@@ -35,49 +37,6 @@
         <canvas id="pingChart"></canvas>
     </div>
     </div>
-
-    <script>
-        var ctx = document.getElementById('pingChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [],
-                datasets: [{
-                    label: 'Latency',
-                    data: [],
-                    borderColor: '#7494ec',
-                    // backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    backgroundColor: '#7494ec',
-                    borderWidth: 3,
-                    fill: false
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        type: 'linear',
-                        position: 'bottom'
-                    },
-                    y: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        });
-
-        function updateChart() {
-            fetch('/ping_data')
-                .then(response => response.json())
-                .then(data => {
-                    chart.data.labels = Array.from(Array(data.length).keys());
-                    chart.data.datasets[0].data = data;
-                    chart.update();
-                });
-        }
-
-        // Update the chart every 2 seconds
-        setInterval(updateChart, 2000);
-    </script>
 </body>
 
 </html>
