@@ -1,6 +1,8 @@
 # Python Web Server for Latency Monitoring
 Monitor any latency for running ping command.
 
+![alt text](default.png)
+
 ## Install Python3
 You can download Python 3 from the [Python Official Website](https://www.python.org/downloads/) and install it on your computer.
 
@@ -65,3 +67,5 @@ While both terminals are running, you can open the browser and type the URL:
 ```
 http://localhost:5000
 ```
+
+**You can also press 'F' for full screen.**
