@@ -4,7 +4,7 @@
 <head>
     <title>Latency Monitoring</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
@@ -45,10 +45,11 @@
                 datasets: [{
                     label: 'Latency',
                     data: [],
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderColor: '#7494ec',
                     // backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     backgroundColor: '#7494ec',
-                    borderWidth: 1
+                    borderWidth: 3,
+                    fill: false
                 }]
             },
             options: {
