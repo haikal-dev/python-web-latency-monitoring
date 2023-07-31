@@ -1,6 +1,7 @@
 export default class App {
     constructor(){
         this.ctx = document.getElementById('pingChart').getContext('2d');
+        this.container = document.getElementById('container');
         this.chart;
     }
 
@@ -14,7 +15,27 @@ export default class App {
         });
     }
 
+    onFullScreen = (cb) => {
+        document.addEventListener('keydown', cb);
+    }
+
+    FullScreen = (document) => {
+        if (document.requestFullscreen) {
+            document.requestFullscreen();
+        } else if (document.webkitRequestFullscreen) { /* Safari */
+            document.webkitRequestFullscreen();
+        } else if (document.msRequestFullscreen) { /* IE11 */
+            document.msRequestFullscreen();
+        }
+    }
+
     run = (Chart) => {
+        this.onFullScreen((e) => {
+            if(e.key === 'f'){
+                this.FullScreen(this.container);
+            }
+        });
+
         this.chart = new Chart(this.ctx, {
             type: 'line',
             data: {

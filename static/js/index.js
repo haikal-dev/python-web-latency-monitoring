@@ -1,5 +1,5 @@
 import App from './app';
-import Chart from './chart';
+import Chart from 'chart.js/auto';
 
 const app = new App();
 
