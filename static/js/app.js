@@ -2,7 +2,15 @@ export default class App {
     constructor(){
         this.ctx = document.getElementById('pingChart').getContext('2d');
         this.container = document.getElementById('container');
+        this.pingText = document.getElementById('pingText');
         this.chart;
+    }
+
+    onLatestPing = (data, cb) => {
+        const num = data.length - 1;
+        const ping = data[num];
+
+        cb(ping);
     }
 
     get = () => {
@@ -12,6 +20,10 @@ export default class App {
             this.chart.data.labels = Array.from(Array(data.length).keys());
             this.chart.data.datasets[0].data = data;
             this.chart.update();
+
+            this.onLatestPing(data, (ping) => {
+                this.pingText.innerHTML = ping;
+            });
         });
     }
 
